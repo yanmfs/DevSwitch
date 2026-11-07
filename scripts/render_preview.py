@@ -19,7 +19,7 @@ ui.line('PRONTO. O que vamos construir?', 'bright')
 ui.line('/help comandos  /config ajustar  /status sessão', 'muted')
 lines += ['', ui.tint('  você › implemente autenticação e valide os testes', 'bright')]
 name = 'devswitch-preview'
-if '--monitor' in sys.argv:
+if '--monitor' in sys.argv or '--input' in sys.argv:
     from dev_auto.dashboard import quota_rows
     name = 'devswitch-monitor-preview'
     lines = []
@@ -37,6 +37,15 @@ if '--monitor' in sys.argv:
         ui.line(row, 'bright' if row.startswith('COTAS') else 'green')
     ui.rule()
     ui.line('Valores ilustrativos. Sem percentual oficial: % não informado.', 'muted')
+    if '--input' in sys.argv:
+        from dev_auto.terminal_input import suggestions
+        name = 'devswitch-input-preview'
+        for index, (value, detail) in enumerate(suggestions('/', live=True)[:4]):
+            ui.line(('› ' if index == 0 else '  ') + value.strip() + '  ·  ' + detail,
+                    'bright' if index == 0 else 'muted')
+        ui.line('╭' + '─' * 96, 'dim')
+        ui.line('  você › /', 'bright')
+        ui.line('╰─ enter enviar · ↑↓ escolher · tab completar · ctrl+c interromper', 'dim')
 font = ImageFont.truetype('/System/Library/Fonts/Menlo.ttc', 17)
 advance = font.getlength('M')
 height = 25
