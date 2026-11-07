@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devswitch"
+version = "1.3.0"
+description = "Local, sequential Claude Code / Codex subscription orchestrator"
+readme = "README.md"
+license = "MIT"
+authors = [{name = "Yan Suzano"}]
+requires-python = ">=3.11"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/yanmfs/devswitch"
+Issues = "https://github.com/yanmfs/devswitch/issues"
+
+[project.scripts]
+devswitch = "dev_auto.cli:main"
+dev-auto = "dev_auto.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["dev_auto*"]
+
+[tool.setuptools.package-data]
+dev_auto = ["assets/*.txt", "assets/*.py"]
