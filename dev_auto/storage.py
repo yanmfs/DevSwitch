@@ -108,14 +108,16 @@ def state_home_path(home=None):
 
 def scope_lock_root():
     # Independent of both state overrides and HOME; all invocations by this user agree.
-    return private_dir(Path(pwd.getpwuid(os.getuid()).pw_dir) / ".local/state/devswitch-locks")
+    # Computing a lock path must not write/chmod the account home during config
+    # queries or the Homebrew sandbox test. Create it only when taking a lock.
+    return Path(pwd.getpwuid(os.getuid()).pw_dir) / ".local/state/devswitch-locks"
 
 
 def scope_path(path):
     identity = Path(path).resolve().stat()
     # Filesystem identity also covers case aliases on normal macOS volumes.
     key = f"{identity.st_dev}:{identity.st_ino}"
-    return scope_lock_root() / (hashlib.sha256(key.encode()).hexdigest() + ".lock")
+    return private_dir(scope_lock_root()) / (hashlib.sha256(key.encode()).hexdigest() + ".lock")
 
 
 class ProjectLock:

@@ -79,6 +79,8 @@ Código-fonte, release e instalação por Homebrew: veja [distribuição](docs/D
 
 Ao digitar `/`, a lista de comandos aparece automaticamente no rodapé. Use ↑/↓ para escolher, Tab para completar e Enter para executar/enviar. A linha `você ›` permanece fixa abaixo das cotas enquanto os eventos aparecem acima. A lista mostra os comandos disponíveis naquele momento e sugere agentes e níveis de effort. Há edição com ←/→, Home/End, Ctrl+A/E, Backspace e Ctrl+W/U/K. Colagem com múltiplas linhas usa bracketed paste e aguarda Enter; o texto não é enviado ao agente durante o trabalho, quando somente comandos de controle são aceitos. Em modo sem cores ou terminal muito estreito, o console mantém a entrada simples.
 
+![Painel e entrada fixa, com dados ilustrativos](docs/assets/devswitch-input-preview.png)
+
 Setas e Enter funcionam em terminais interativos com cores. O modo sem cores usa números e nomes. `NO_COLOR` e `TERM=dumb` são respeitados; `--color always` força o tema e `--no-color` desliga cores. O desenho se adapta à largura; em janelas menores o cabeçalho é compacto. `--json` mantém a saída estruturada de status, config e doctor e produz JSONL para logs, sem códigos de cor. `devswitch help` funciona mesmo fora de um projeto Git.
 
 Em um projeto sem preferências, o menu começa sugerindo Claude → Codex, Claude `sonnet`/`medium` e Codex `gpt-6.1-sol`/`medium`. Você pode escolher outra ordem, outro modelo do catálogo instalado ou informar um ID. O catálogo local não comprova acesso a um modelo na conta; a execução continua sujeita à disponibilidade do provedor. O menu não oferece modos que delegam automaticamente a agentes paralelos.
